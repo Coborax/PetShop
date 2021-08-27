@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop.Core", "PetShop.Core\PetShop.Core.csproj", "{F72E58AF-1F91-4DA8-9C9A-52F2B2CA2F53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop.Domain", "PetShop.Domain\PetShop.Domain.csproj", "{44761D73-8A8C-4BE2-9380-97B5A45D99AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop.Infrastructure.Data.InMemory", "PetShop.Infrastructure.Data.InMemory\PetShop.Infrastructure.Data.InMemory.csproj", "{B2F95758-3288-44BA-B451-37564FE290E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop.UI.ConsoleUI", "PetShop.UI.ConsoleUI\PetShop.UI.ConsoleUI.csproj", "{5D7AA545-97FA-44B7-A232-0CC8BE19B972}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F72E58AF-1F91-4DA8-9C9A-52F2B2CA2F53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F72E58AF-1F91-4DA8-9C9A-52F2B2CA2F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F72E58AF-1F91-4DA8-9C9A-52F2B2CA2F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F72E58AF-1F91-4DA8-9C9A-52F2B2CA2F53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44761D73-8A8C-4BE2-9380-97B5A45D99AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44761D73-8A8C-4BE2-9380-97B5A45D99AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44761D73-8A8C-4BE2-9380-97B5A45D99AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44761D73-8A8C-4BE2-9380-97B5A45D99AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2F95758-3288-44BA-B451-37564FE290E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F95758-3288-44BA-B451-37564FE290E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F95758-3288-44BA-B451-37564FE290E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F95758-3288-44BA-B451-37564FE290E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D7AA545-97FA-44B7-A232-0CC8BE19B972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D7AA545-97FA-44B7-A232-0CC8BE19B972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D7AA545-97FA-44B7-A232-0CC8BE19B972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D7AA545-97FA-44B7-A232-0CC8BE19B972}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
