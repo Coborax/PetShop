@@ -30,7 +30,7 @@ namespace PetShop.Infrastructure.Data.InMemory
                 .RuleFor(p => p.Price, (f, p) => f.Commerce.Random.Double(10, 100000));
 
             
-            Pets.AddRange(petFaker.GenerateBetween(10, 100));
+            Pets.AddRange(petFaker.GenerateBetween(100, 200));
         }
     }
 }

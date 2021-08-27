@@ -31,6 +31,8 @@ namespace PetShop.UI.ConsoleUI
             MainWindow mainWindow = new MainWindow(petService);
             top.Add(mainWindow);
             
+            mainWindow.InitWindow(Terminal.Gui.Application.Current.Bounds);
+            
             Terminal.Gui.Application.Run();
         }
     }
