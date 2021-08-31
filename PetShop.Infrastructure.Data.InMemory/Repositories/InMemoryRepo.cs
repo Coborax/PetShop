@@ -1,20 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using PetShop.Domain.Repositories;
 
 namespace PetShop.Infrastructure.Data.InMemory.Repositories
 {
-    public class InMemoryRepo<T> : IRepo<T>
+    public class InMemoryRepo<TEntity> : IRepo<TEntity>
     {
-        private List<T> _entities;
+        private List<TEntity> _entities;
 
-        public InMemoryRepo(List<T> entities)
+        public InMemoryRepo(List<TEntity> entities)
         {
             _entities = entities;
         }
 
-        public List<T> GetAll()
+        public List<TEntity> GetAll()
         {
             return _entities;
+        }
+
+        public TEntity Get(int id)
+        {
+            throw new NotImplementedException();
+            //return _entities.Find();
         }
     }
 }

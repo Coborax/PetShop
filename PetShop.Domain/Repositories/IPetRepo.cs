@@ -3,9 +3,8 @@ using PetShop.Core.Models;
 
 namespace PetShop.Domain.Repositories
 {
-    public interface IRepo<TEntity>
+    public interface IPetRepo : IRepo<Pet>
     {
-        List<TEntity> GetAll();
-        TEntity Get(int id);
+        List<Pet> GetFiveCheapests();
     }
 }

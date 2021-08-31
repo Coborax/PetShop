@@ -16,10 +16,10 @@ namespace PetShop.UI.ConsoleUI
         {
             ServiceCollection serviceCollection = new ServiceCollection();
             serviceCollection.AddSingleton<FakeDB>();
-            serviceCollection.AddScoped<IRepo<Pet>, InMemoryPetRepo>();
+            serviceCollection.AddScoped<IPetRepo, InMemoryPetRepo>();
             serviceCollection.AddScoped<IRepo<PetType>, InMemoryPetTypeRepo>();
-            serviceCollection.AddScoped<IService<Pet>, Service<Pet>>();
-            serviceCollection.AddScoped<IService<PetType>, Service<PetType>>();
+            serviceCollection.AddScoped<IService<Pet>, GenericService<Pet>>();
+            serviceCollection.AddScoped<IService<PetType>, GenericService<PetType>>();
 
             ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 

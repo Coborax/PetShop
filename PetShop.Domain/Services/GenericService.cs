@@ -4,11 +4,11 @@ using PetShop.Domain.Repositories;
 
 namespace PetShop.Domain.Services
 {
-    public class Service<T> : IService<T>
+    public class GenericService<T> : IService<T>
     {
         private IRepo<T> _repo;
 
-        public Service(IRepo<T> repo)
+        public GenericService(IRepo<T> repo)
         {
             _repo = repo;
         }
