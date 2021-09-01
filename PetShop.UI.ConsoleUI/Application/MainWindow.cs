@@ -6,7 +6,7 @@ namespace PetShop.UI.ConsoleUI.Application
 {
     public class MainWindow : Window
     {
-        private readonly IService<Pet> _petService;
+        private readonly IPetService<Pet> _petPetService;
 
         private ListView _petListView;
         private TextField _nameField;
@@ -16,9 +16,9 @@ namespace PetShop.UI.ConsoleUI.Application
         private TextField _colorLabel;
         private TextField _priceLabel;
 
-        public MainWindow(IService<Pet> petService) : base("Pet Shop")
+        public MainWindow(IPetService<Pet> petPetService) : base("Pet Shop")
         {
-            _petService = petService;
+            _petPetService = petPetService;
         }
 
         public void InitWindow(Rect terminalRect)
@@ -37,7 +37,7 @@ namespace PetShop.UI.ConsoleUI.Application
             FrameView petInfoFrame = new FrameView(new Rect(listFrameWidth, 0, windowWidth - listFrameWidth - padding, windowHeight - padding), "Pet Info");
 
             // Create pet list view
-            _petListView = new ListView(new Rect(0, 0, listFrameWidth, windowHeight - padding * 2), _petService.GetAll());
+            _petListView = new ListView(new Rect(0, 0, listFrameWidth, windowHeight - padding * 2), _petPetService.GetAll());
             _petListView.SelectedItemChanged += PetListViewOnSelectedItemChanged;
             listFrame.Add(_petListView);
             
@@ -77,12 +77,12 @@ namespace PetShop.UI.ConsoleUI.Application
 
         private void PetListViewOnSelectedItemChanged(ListViewItemEventArgs obj)
         {
-            _nameField.Text = _petService.GetAll()[_petListView.SelectedItem].Name;
-            _typeLabel.Text = _petService.GetAll()[_petListView.SelectedItem].Type.Name;
-            _birthLabel.Text = _petService.GetAll()[_petListView.SelectedItem].Birthdate.ToString("dd/MM/yyyy");
-            _soldLabel.Text = _petService.GetAll()[_petListView.SelectedItem].SoldDate.ToString("dd/MM/yyyy");
-            _colorLabel.Text = _petService.GetAll()[_petListView.SelectedItem].Color;
-            _priceLabel.Text = _petService.GetAll()[_petListView.SelectedItem].Price.ToString("dd/MM/yyyy");
+            _nameField.Text = _petPetService.GetAll()[_petListView.SelectedItem].Name;
+            _typeLabel.Text = _petPetService.GetAll()[_petListView.SelectedItem].Type.Name;
+            _birthLabel.Text = _petPetService.GetAll()[_petListView.SelectedItem].Birthdate.ToString("dd/MM/yyyy");
+            _soldLabel.Text = _petPetService.GetAll()[_petListView.SelectedItem].SoldDate.ToString("dd/MM/yyyy");
+            _colorLabel.Text = _petPetService.GetAll()[_petListView.SelectedItem].Color;
+            _priceLabel.Text = _petPetService.GetAll()[_petListView.SelectedItem].Price.ToString("dd/MM/yyyy");
             
         }
     }

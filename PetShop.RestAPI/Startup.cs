@@ -1,22 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using PetShop.Core.Models;
+using PetShop.Core.Services;
 using PetShop.Domain.Repositories;
 using PetShop.Domain.Services;
 using PetShop.Infrastructure.Data.InMemory;
 using PetShop.Infrastructure.Data.InMemory.Repositories;
-using PetShop.Infrastructure.Data.InMemory.Services;
 
 namespace PetShop.RestAPI
 {
@@ -40,8 +32,8 @@ namespace PetShop.RestAPI
 
             services.AddSingleton<FakeDB>();
             services.AddScoped<IPetRepo, InMemoryPetRepo>();
-            services.AddScoped<IRepo<PetType>, InMemoryPetTypeRepo>();
-            services.AddScoped<IUnitOfWork, InMemoryUnitOfWork>();
+            services.AddScoped<IPetService, PetService>();
+            //services.AddScoped<IUnitOfWork, InMemoryUnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

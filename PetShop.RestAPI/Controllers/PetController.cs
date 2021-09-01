@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using PetShop.Core.Models;
+using PetShop.Core.Services;
 using PetShop.Domain.Services;
 
 namespace PetShop.RestAPI.Controllers
@@ -9,34 +10,33 @@ namespace PetShop.RestAPI.Controllers
     [Route("api/[controller]")]
     public class PetController : Controller
     {
-        private IUnitOfWork _unitOfWork;
+        private IPetService _petService;
         
-        public PetController(IUnitOfWork unitOfWork)
+        public PetController(IPetService petService)
         {
-            _unitOfWork = unitOfWork;
+            _petService = petService;
         }
         
         // GET All
         [HttpGet]
         public ActionResult<List<Pet>> Get()
         {
-            return Ok(_unitOfWork.PetRepo.GetAll());
+            return Ok(_petService.GetAll());
         }
         
         // GET by ID
         [HttpGet("{id}")]
         public ActionResult<List<Pet>> Get(int id)
         {
-            return Ok(_unitOfWork.PetRepo);
+            return Ok(_petService.Find(id));
         }
         
         // GET Cheapest
         [HttpGet("Cheapest")]
         public ActionResult<List<Pet>> GetFiveCheapest()
         {
-            return Ok(_unitOfWork.PetRepo.GetFiveCheapests());
+            return _petService.GetFiveCheapests();
         }
-        
-        
+
     }
 }
