@@ -6,7 +6,7 @@ namespace PetShop.UI.ConsoleUI.Application
 {
     public class MainWindow : Window
     {
-        private readonly IPetService<Pet> _petPetService;
+        private readonly IPetService _petPetService;
 
         private ListView _petListView;
         private TextField _nameField;
@@ -16,7 +16,7 @@ namespace PetShop.UI.ConsoleUI.Application
         private TextField _colorLabel;
         private TextField _priceLabel;
 
-        public MainWindow(IPetService<Pet> petPetService) : base("Pet Shop")
+        public MainWindow(IPetService petPetService) : base("Pet Shop")
         {
             _petPetService = petPetService;
         }

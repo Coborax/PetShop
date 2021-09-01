@@ -17,13 +17,11 @@ namespace PetShop.UI.ConsoleUI
             ServiceCollection serviceCollection = new ServiceCollection();
             serviceCollection.AddSingleton<FakeDB>();
             serviceCollection.AddScoped<IPetRepo, InMemoryPetRepo>();
-            serviceCollection.AddScoped<IRepo<PetType>, InMemoryPetTypeRepo>();
-            serviceCollection.AddScoped<IPetService<Pet>, GenericService<Pet>>();
-            serviceCollection.AddScoped<IPetService<PetType>, GenericService<PetType>>();
+            serviceCollection.AddScoped<IPetService, PetService>();
 
             ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 
-            IPetService<Pet> petPetService = serviceProvider.GetRequiredService<IPetService<Pet>>();
+            IPetService petPetService = serviceProvider.GetRequiredService<IPetService>();
 
             Terminal.Gui.Application.Init();
             Toplevel top = Terminal.Gui.Application.Top;
