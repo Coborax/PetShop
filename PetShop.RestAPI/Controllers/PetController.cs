@@ -37,6 +37,34 @@ namespace PetShop.RestAPI.Controllers
         {
             return _petService.GetFiveCheapests();
         }
+        
+        [HttpPost]
+        public ActionResult<Pet> Post(Pet pet)
+        {
+            Pet updatedPet = _petService.Create(pet);
+            if (updatedPet != null)
+                return Ok(updatedPet);
 
+            return BadRequest();
+        }
+        
+        [HttpPut]
+        public ActionResult<Pet> Put(Pet pet)
+        {
+            Pet updatedPet = _petService.Update(pet);
+            if (updatedPet != null)
+                return Ok(updatedPet);
+
+            return BadRequest();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (_petService.Delete(id))
+                return Ok();
+
+            return BadRequest();
+        }
     }
 }

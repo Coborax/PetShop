@@ -15,6 +15,11 @@ namespace PetShop.Domain.Services
             _petRepo = petRepo;
         }
 
+        public Pet Create(Pet pet)
+        {
+            return _petRepo.Create(pet);
+        }
+
         public List<Pet> GetAll()
         {
             return _petRepo.GetAll();
@@ -23,6 +28,17 @@ namespace PetShop.Domain.Services
         public Pet Find(int id)
         {
             return _petRepo.Find(id);
+        }
+
+        public Pet Update(Pet pet)
+        {
+            return _petRepo.Update(pet);
+        }
+
+        public bool Delete(int id)
+        {
+            Pet pet = _petRepo.Find(id);
+            return pet != null && _petRepo.Delete(pet);
         }
 
         public List<Pet> GetFiveCheapests()
