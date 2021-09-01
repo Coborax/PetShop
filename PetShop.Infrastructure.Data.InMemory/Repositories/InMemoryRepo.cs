@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using PetShop.Core.Models;
 using PetShop.Domain.Repositories;
 
 namespace PetShop.Infrastructure.Data.InMemory.Repositories
 {
-    public class InMemoryRepo<TEntity> : IRepo<TEntity>
+    public class InMemoryRepo<T> : IRepo<T> where T : Entity
     {
         private List<TEntity> _entities;
 
@@ -18,10 +18,9 @@ namespace PetShop.Infrastructure.Data.InMemory.Repositories
             return _entities;
         }
 
-        public TEntity Get(int id)
+        public T Find(int id)
         {
-            throw new NotImplementedException();
-            //return _entities.Find();
+            return _entities.Find(e => e.ID == id);
         }
     }
 }

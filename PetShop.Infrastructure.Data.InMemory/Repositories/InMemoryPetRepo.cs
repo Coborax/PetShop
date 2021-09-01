@@ -8,7 +8,7 @@ namespace PetShop.Infrastructure.Data.InMemory.Repositories
     public class InMemoryPetRepo : InMemoryRepo<Pet>, IPetRepo
     {
         public InMemoryPetRepo(FakeDB db) : base(db.Pets) { }
-        public List<Pet> GetFiveCheapests()
+        public List<Pet> GetFiveCheapest()
         {
             return GetAll().OrderBy(p => p.Price).Take(5).ToList();
         }
