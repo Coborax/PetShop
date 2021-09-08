@@ -39,6 +39,11 @@ namespace PetShop.Domain.Services
             return _petRepo.Find(id);
         }
 
+        public List<Pet> Find(PetType petType)
+        {
+            return _petRepo.GetAll().Where(p => p.Type.ID == petType.ID).ToList();
+        }
+
         public Pet Update(Pet pet)
         {
             return _petRepo.Update(pet);

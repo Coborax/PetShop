@@ -1,4 +1,5 @@
-﻿using PetShop.Core.Models;
+﻿using System.Collections.Generic;
+using PetShop.Core.Models;
 using PetShop.Core.Services;
 using PetShop.Domain.Repositories;
 
@@ -16,6 +17,11 @@ namespace PetShop.Domain.Services
         public PetType Find(int id)
         {
             return _repo.Find(id);
+        }
+
+        public List<PetType> GetAll()
+        {
+            return _repo.GetAll();
         }
     }
 }

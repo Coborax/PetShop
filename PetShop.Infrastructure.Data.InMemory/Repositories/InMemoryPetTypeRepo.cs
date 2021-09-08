@@ -18,5 +18,10 @@ namespace PetShop.Infrastructure.Data.InMemory.Repositories
         {
             return _petTypes.FirstOrDefault(p => p.ID == id);
         }
+
+        public List<PetType> GetAll()
+        {
+            return _petTypes;
+        }
     }
 }
