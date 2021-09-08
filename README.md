@@ -12,4 +12,4 @@ The following technologies will be used:
 - `PetShop.Domain` Domain logic
 - `PetShop.Infrastructure.Data.InMemory` In memory implementations of repositories
 - `PetShop.RestAPI` Rest API
-- `PetShop.ConsoleUI` Console App using the Terminal.UI library
+- `PetShop.ConsoleUI` Console App using that uses the services directly
