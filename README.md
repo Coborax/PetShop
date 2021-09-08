@@ -1,6 +1,8 @@
 # PetShop 🐶
 Pet Shop School Project
 
+**NOTE. This is a savepoint for my CSharp Crash Course hand in**
+
 This project will evolve into a Pet Shop Web App. 
 The following technologies will be used:
 - ASP.NET Core for the WebAPI
