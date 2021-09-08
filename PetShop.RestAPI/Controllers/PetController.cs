@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
-using PetShop.Domain.Services;
 
 namespace PetShop.RestAPI.Controllers
 {
@@ -32,12 +31,13 @@ namespace PetShop.RestAPI.Controllers
         }
         
         // GET Cheapest
-        [HttpGet("Cheapest")]
-        public ActionResult<List<Pet>> GetFiveCheapest()
+        [HttpGet("Cheapest/{n}")]
+        public ActionResult<List<Pet>> GetFiveCheapest(int n)
         {
-            return _petService.GetFiveCheapests();
+            return _petService.GetCheapests(n);
         }
         
+        // POST (Create)
         [HttpPost]
         public ActionResult<Pet> Post(Pet pet)
         {
@@ -48,6 +48,7 @@ namespace PetShop.RestAPI.Controllers
             return BadRequest();
         }
         
+        // PUT (Update)
         [HttpPut]
         public ActionResult<Pet> Put(Pet pet)
         {
@@ -58,6 +59,7 @@ namespace PetShop.RestAPI.Controllers
             return BadRequest();
         }
 
+        // Delete
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

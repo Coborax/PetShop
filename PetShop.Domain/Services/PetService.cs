@@ -41,9 +41,9 @@ namespace PetShop.Domain.Services
             return pet != null && _petRepo.Delete(pet);
         }
 
-        public List<Pet> GetFiveCheapests()
+        public List<Pet> GetCheapests(int n)
         {
-            return _petRepo.GetAll().OrderBy(p => p.Price).Take(5).ToList();
+            return _petRepo.GetAll().OrderBy(p => p.Price).Take(n).ToList();
         }
     }
 }
