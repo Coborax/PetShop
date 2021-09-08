@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
@@ -9,14 +10,22 @@ namespace PetShop.Domain.Services
     public class PetService : IPetService
     {
         private IPetRepo _petRepo;
+        private IPetTypeRepo _petTypeRepo;
 
-        public PetService(IPetRepo petRepo)
+        public PetService(IPetRepo petRepo, IPetTypeRepo petTypeRepo)
         {
             _petRepo = petRepo;
+            _petTypeRepo = petTypeRepo;
         }
 
         public Pet Create(Pet pet)
         {
+            PetType petType = _petTypeRepo.Find(pet.Type.ID);
+            if (petType == null)
+                throw new Exception($"Pet typ with ID: {pet.Type.ID}, does not exist");
+
+            // Update pet type to use reference from repo
+            pet.Type = petType;
             return _petRepo.Create(pet);
         }
 

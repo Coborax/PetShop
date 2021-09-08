@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
@@ -18,32 +19,42 @@ namespace PetShop.RestAPI.Controllers
         
         // GET All
         [HttpGet]
-        public ActionResult<List<Pet>> Get()
+        public ActionResult<List<PetDto>> Get()
         {
-            return Ok(_petService.GetAll());
+            return Ok(_petService.GetAll().Select(PetToDto));
         }
         
         // GET by ID
         [HttpGet("{id}")]
-        public ActionResult<List<Pet>> Get(int id)
+        public ActionResult<PetDto> Get(int id)
         {
-            return Ok(_petService.Find(id));
+            return Ok(PetToDto(_petService.Find(id)));
         }
         
         // GET Cheapest
         [HttpGet("Cheapest/{n}")]
-        public ActionResult<List<Pet>> GetFiveCheapest(int n)
+        public ActionResult<List<PetDto>> GetFiveCheapest(int n)
         {
-            return _petService.GetCheapests(n);
+            return _petService.GetCheapests(n).Select(PetToDto).ToList();
         }
         
         // POST (Create)
         [HttpPost]
-        public ActionResult<Pet> Post(Pet pet)
+        public ActionResult<PetDto> Post(PetDto pet)
         {
-            Pet updatedPet = _petService.Create(pet);
+            Pet fromDto = new Pet
+            {
+                Name = pet.Name,
+                Type = new PetType {ID = pet.TypeID},
+                Birthdate = pet.Birthdate,
+                SoldDate = pet.SoldDate,
+                Color = pet.Color,
+                Price = pet.Price
+            };
+            
+            Pet updatedPet = _petService.Create(fromDto);
             if (updatedPet != null)
-                return Ok(updatedPet);
+                return Ok(PetToDto(updatedPet));
 
             return BadRequest();
         }
@@ -67,6 +78,20 @@ namespace PetShop.RestAPI.Controllers
                 return Ok();
 
             return BadRequest();
+        } 
+        
+        private PetDto PetToDto(Pet pet)
+        {
+            return new()
+            {
+                ID = pet.ID,
+                Name = pet.Name,
+                TypeID = pet.Type.ID,
+                Birthdate = pet.Birthdate,
+                SoldDate = pet.SoldDate,
+                Color = pet.Color,
+                Price = pet.Price
+            };
         }
     }
 }

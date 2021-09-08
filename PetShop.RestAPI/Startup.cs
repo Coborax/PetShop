@@ -33,6 +33,7 @@ namespace PetShop.RestAPI
             services.AddSingleton<FakeDB>();
             services.AddScoped<IPetRepo, InMemoryPetRepo>();
             services.AddScoped<IPetService, PetService>();
+            services.AddScoped<IPetTypeRepo, InMemoryPetTypeRepo>();
             //services.AddScoped<IUnitOfWork, InMemoryUnitOfWork>();
         }
 

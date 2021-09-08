@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using PetShop.Core.Models;
 using PetShop.Domain.Repositories;
-using PetShop.Domain.Services;
-
 namespace PetShop.Infrastructure.Data.InMemory.Repositories
 {
     public class InMemoryPetRepo : IPetRepo
@@ -38,12 +36,25 @@ namespace PetShop.Infrastructure.Data.InMemory.Repositories
             if (petToUpdate == null)
                 return null;
 
-            petToUpdate.Name = pet.Name;
-            petToUpdate.Type = pet.Type;
-            petToUpdate.Birthdate = pet.Birthdate;
-            petToUpdate.SoldDate = pet.SoldDate;
-            petToUpdate.Color = pet.Color;
-            petToUpdate.Price = pet.Price;
+            if (pet.Name != null)
+                petToUpdate.Name = pet.Name;
+            
+            if (pet.Type != null)
+                petToUpdate.Type = pet.Type;
+            
+            //TODO: Look for another solution
+            if (pet.Birthdate != DateTime.MinValue)
+                petToUpdate.Birthdate = pet.Birthdate;
+           
+            //TODO: Look for another solution
+            if (pet.SoldDate != DateTime.MinValue)
+                petToUpdate.SoldDate = pet.SoldDate;
+            
+            if (pet.Color != null)
+                petToUpdate.Color = pet.Color;
+            
+            if (pet.Price > 0)
+                petToUpdate.Price = pet.Price;
             
             return petToUpdate;
         }
