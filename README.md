@@ -9,7 +9,7 @@ The following technologies will be used:
 
 ## Savepoints (Branches)
 During the development of this project I will create various saves of previous versions of the project (Mostly used for hand-ins)
-- [main](https://github.com/Coborax/PetShop/tree/checkpoint-cscc) Newest version of the project
+- [main](https://github.com/Coborax/PetShop/tree/main) Newest version of the project
 - [checkpoint-cscc](https://github.com/Coborax/PetShop/tree/checkpoint-cscc) Hand in state for my CSharp Crash Course hand in
 
 ## Folders
