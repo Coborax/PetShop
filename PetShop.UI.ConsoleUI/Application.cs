@@ -43,7 +43,7 @@ namespace PetShop.UI.ConsoleUI
         {
             Console.Write("Select pet type: ");
             int selectedType = ListSelect(_petTypeService.GetAll().Select(pt => pt.Name).ToList());
-            List<Pet> pets = _petService.Find(_petTypeService.Find(selectedType));
+            List<Pet> pets = _petService.Find(_petTypeService.GetAll()[selectedType]);
             foreach (Pet pet in pets)
             {
                 Console.WriteLine($"({pet.ID}) {pet.Name}");
