@@ -1,3 +1,4 @@
+using System.Linq;
 using PetShop.Core.Models;
 
 namespace PetShop.Infrastructure.Data.EFCore.Entities
@@ -14,7 +15,8 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
                 Birthdate = pet.Birthdate,
                 SoldDate = pet.SoldDate,
                 Color = pet.Color,
-                Price = pet.Price
+                Price = pet.Price,
+                OwnerID = pet.Owner.ID
             };
         }
         
@@ -28,7 +30,8 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
                 Birthdate = pet.Birthdate,
                 SoldDate = pet.SoldDate,
                 Color = pet.Color,
-                Price = pet.Price
+                Price = pet.Price,
+                Owner = new Owner {ID = pet.OwnerID}
             };
         }
         
@@ -47,6 +50,24 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
             {
                 ID = petType.ID,
                 Name = petType.Name
+            };
+        }
+
+        public static OwnerEntity OwnerToEntity(Owner owner)
+        {
+            return new OwnerEntity
+            {
+                ID = owner.ID,
+                Name = owner.Name
+            };
+        }
+
+        public static Owner EntityToOwner(OwnerEntity ownerEntity)
+        {
+            return new Owner
+            {
+                ID = ownerEntity.ID,
+                Name = ownerEntity.Name
             };
         }
     }

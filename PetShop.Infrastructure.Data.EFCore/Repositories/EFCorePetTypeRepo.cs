@@ -16,12 +16,24 @@ namespace PetShop.Infrastructure.Data.EFCore.Repositories
         }
         public PetType Find(int id)
         {
-            return EntityConverter.EntityToPetType(_ctx.PetTypes.FirstOrDefault(pe => pe.ID == id));
+            PetTypeEntity pe = _ctx.PetTypes.FirstOrDefault(pe => pe.ID == id);
+            if (pe == null)
+                return null;
+            return EntityConverter.EntityToPetType(pe);
         }
 
         public List<PetType> GetAll()
         {
             return _ctx.PetTypes.Select(pe => EntityConverter.EntityToPetType(pe)).ToList();
+        }
+
+        public PetType Create(PetType petType)
+        {
+            PetTypeEntity pte = EntityConverter.PetTypeToEntity(petType);
+            PetTypeEntity createdPte = _ctx.PetTypes.Add(pte).Entity;
+            _ctx.SaveChanges();
+
+            return EntityConverter.EntityToPetType(createdPte);
         }
     }
 }

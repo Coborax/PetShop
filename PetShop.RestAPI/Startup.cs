@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Bogus;
+using Bogus.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +13,7 @@ using PetShop.Core.Services;
 using PetShop.Domain.Repositories;
 using PetShop.Domain.Services;
 using PetShop.Infrastructure.Data.EFCore;
+using PetShop.Infrastructure.Data.EFCore.Entities;
 using PetShop.Infrastructure.Data.EFCore.Repositories;
 using PetShop.Infrastructure.Data.InMemory;
 using PetShop.Infrastructure.Data.InMemory.Repositories;
@@ -49,8 +53,12 @@ namespace PetShop.RestAPI
             //services.AddSingleton<FakeDB>();
             services.AddScoped<IPetRepo, EFCorePetRepo>();
             services.AddScoped<IPetService, PetService>();
+            
             services.AddScoped<IPetTypeRepo, EFCorePetTypeRepo>();
             services.AddScoped<IPetTypeService, PetTypeService>();
+            
+            services.AddScoped<IOwnerRepo, EFCoreOwnerRepo>();
+            services.AddScoped<IOwnerService, OwnerService>();
             //services.AddScoped<IUnitOfWork, InMemoryUnitOfWork>();
         }
 
@@ -62,7 +70,7 @@ namespace PetShop.RestAPI
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PetShop.RestAPI v1"));
-
+                
                 using (var scope = app.ApplicationServices.CreateScope())
                 {
                     var ctx = scope.ServiceProvider.GetService<PetShopContext>();

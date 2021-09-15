@@ -23,5 +23,10 @@ namespace PetShop.Domain.Services
         {
             return _repo.GetAll();
         }
+
+        public PetType Create(PetType petType)
+        {
+            return _repo.Create(petType);
+        }
     }
 }

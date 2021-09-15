@@ -7,5 +7,6 @@ namespace PetShop.Domain.Repositories
     {
         PetType Find(int id);
         List<PetType> GetAll();
+        PetType Create(PetType petType);
     }
 }

@@ -23,5 +23,13 @@ namespace PetShop.Infrastructure.Data.InMemory.Repositories
         {
             return _petTypes;
         }
+
+        public PetType Create(PetType petType)
+        {
+            petType.ID = _petTypes.Count + 1;
+            _petTypes.Add(petType);
+
+            return petType;
+        }
     }
 }

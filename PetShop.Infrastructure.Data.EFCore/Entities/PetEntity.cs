@@ -11,5 +11,7 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
         public DateTime SoldDate { get; set; }
         public string Color { get; set; }
         public double Price { get; set; }
+
+        public int OwnerID { get; set; }
     }
 }
