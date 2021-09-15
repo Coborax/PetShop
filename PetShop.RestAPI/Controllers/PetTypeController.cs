@@ -48,9 +48,6 @@ namespace PetShop.RestAPI.Controllers
                     Name = petType.Name
                 });
 
-                if (createdPetType == null)
-                    return StatusCode(500, "Could not create Pet type");
-                
                 return Ok(new PetTypeDto
                 {
                     ID = createdPetType.ID,
