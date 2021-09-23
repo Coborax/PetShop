@@ -12,6 +12,7 @@ namespace PetShop.Infrastructure.Data.EFCore
         public DbSet<PetEntity> Pets { get; set; }
         public DbSet<PetTypeEntity> PetTypes { get; set; }
         public DbSet<OwnerEntity> Owners { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public PetShopContext(DbContextOptions<PetShopContext> options) : base(options) { }
 

@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Bogus;
 using Bogus.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -8,10 +10,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PetShop.Core.Services;
 using PetShop.Domain.Repositories;
 using PetShop.Domain.Services;
+using PetShop.Infrastructure.Auth.JWT;
 using PetShop.Infrastructure.Data.EFCore;
 using PetShop.Infrastructure.Data.EFCore.Entities;
 using PetShop.Infrastructure.Data.EFCore.Repositories;
@@ -38,6 +42,27 @@ namespace PetShop.RestAPI
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "PetShop.RestAPI", Version = "v1"});
             });
 
+            // Generate secret key
+            Byte[] secretBytes = new byte[40];
+            Random rand = new Random();
+            rand.NextBytes(secretBytes);
+            
+            // Add JWT authentication
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateAudience = false,
+                    //ValidAudience = "CoMetaApiClient",
+                    ValidateIssuer = false,
+                    //ValidIssuer = "CoMetaApi",
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(secretBytes),
+                    ValidateLifetime = true, //validate the expiration and not before values in the token
+                    ClockSkew = TimeSpan.FromMinutes(5) //5 minute tolerance for the expiration date
+                };
+            });
+            
             var loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder.AddConsole();
@@ -59,6 +84,11 @@ namespace PetShop.RestAPI
             
             services.AddScoped<IOwnerRepo, EFCoreOwnerRepo>();
             services.AddScoped<IOwnerService, OwnerService>();
+
+            services.AddScoped<IUserRepo, EFCoreUserRepo>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddSingleton<IAuthenticationHelper>(new JWTAuthenticationHelper(secretBytes));
             //services.AddScoped<IUnitOfWork, InMemoryUnitOfWork>();
         }
 
@@ -82,7 +112,8 @@ namespace PetShop.RestAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

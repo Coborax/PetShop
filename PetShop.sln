@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop.RestAPI", "PetShop.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop.Infrastructure.Data.EFCore", "PetShop.Infrastructure.Data.EFCore\PetShop.Infrastructure.Data.EFCore.csproj", "{1CE24E2E-FED3-4C68-B333-FDB22A3BB408}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShop.Infrastructure.Auth.JWT", "PetShop.Infrastructure.Auth.JWT\PetShop.Infrastructure.Auth.JWT.csproj", "{35B71AE7-8359-4100-9737-C5FF1B355EE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{1CE24E2E-FED3-4C68-B333-FDB22A3BB408}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CE24E2E-FED3-4C68-B333-FDB22A3BB408}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CE24E2E-FED3-4C68-B333-FDB22A3BB408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35B71AE7-8359-4100-9737-C5FF1B355EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35B71AE7-8359-4100-9737-C5FF1B355EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35B71AE7-8359-4100-9737-C5FF1B355EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35B71AE7-8359-4100-9737-C5FF1B355EE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
