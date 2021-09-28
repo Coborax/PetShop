@@ -1,6 +1,6 @@
 using PetShop.Domain.Repositories;
 
-namespace PetShop.Core.Services
+namespace PetShop.Domain
 {
     public interface IUnitOfWork
     {

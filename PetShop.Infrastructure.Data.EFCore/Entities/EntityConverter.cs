@@ -9,14 +9,14 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
         {
             return new PetEntity
             {
-                ID = pet.ID,
+                ID = pet.Id,
                 Name = pet.Name,
-                TypeID = pet.PetType.ID,
+                TypeID = pet.PetType.Id,
                 Birthdate = pet.Birthdate,
                 SoldDate = pet.SoldDate,
                 Color = pet.Color,
                 Price = pet.Price,
-                OwnerID = pet.Owner.ID
+                OwnerID = pet.Owner.Id
             };
         }
         
@@ -24,14 +24,14 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
         {
             return new Pet
             {
-                ID = pet.ID,
+                Id = pet.ID,
                 Name = pet.Name,
-                PetType = new PetType {ID = pet.TypeID},
+                PetType = new PetType {Id = pet.TypeID},
                 Birthdate = pet.Birthdate,
                 SoldDate = pet.SoldDate,
                 Color = pet.Color,
                 Price = pet.Price,
-                Owner = new Owner {ID = pet.OwnerID}
+                Owner = new Owner {Id = pet.OwnerID}
             };
         }
         
@@ -39,7 +39,7 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
         {
             return new PetTypeEntity
             {
-                ID = petType.ID,
+                ID = petType.Id,
                 Name = petType.Name
             };
         }
@@ -48,7 +48,7 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
         {
             return new PetType
             {
-                ID = petType.ID,
+                Id = petType.ID,
                 Name = petType.Name
             };
         }
@@ -57,7 +57,7 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
         {
             return new OwnerEntity
             {
-                ID = owner.ID,
+                ID = owner.Id,
                 Name = owner.Name
             };
         }
@@ -66,7 +66,7 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
         {
             return new Owner
             {
-                ID = ownerEntity.ID,
+                Id = ownerEntity.ID,
                 Name = ownerEntity.Name
             };
         }

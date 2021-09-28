@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PetShop.Core.Services;
+using PetShop.Domain;
 using PetShop.Domain.Repositories;
 using PetShop.Domain.Services;
 using PetShop.Infrastructure.Auth.JWT;
@@ -83,7 +84,7 @@ namespace PetShop.RestAPI
                 opt
                     .UseLoggerFactory(loggerFactory)
                     .UseSqlite("Data Source=petShop.db");
-            }, ServiceLifetime.Transient);
+            });
 
             //services.AddSingleton<FakeDB>();
             

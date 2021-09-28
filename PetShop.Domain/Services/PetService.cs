@@ -37,7 +37,7 @@ namespace PetShop.Domain.Services
 
         public List<Pet> Find(PetType petType)
         {
-            return _unitOfWork.Pets.GetAll().Where(p => p.PetType.ID == petType.ID).ToList();
+            return _unitOfWork.Pets.GetAll().Where(p => p.PetType.Id == petType.Id).ToList();
         }
 
         public Pet Update(Pet pet)
@@ -48,7 +48,11 @@ namespace PetShop.Domain.Services
         public bool Delete(int id)
         {
             Pet pet = _unitOfWork.Pets.Find(id);
-            return pet != null && _unitOfWork.Pets.Delete(pet);
+            _unitOfWork.Pets.Delete(pet);
+            
+            _unitOfWork.Complete();
+            
+            return true;
         }
 
         public List<Pet> GetCheapest(int n)

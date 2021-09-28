@@ -29,7 +29,7 @@ namespace PetShop.RestAPI.Controllers
 
                 return Ok(new PetTypeDto
                 {
-                    ID = petType.ID,
+                    ID = petType.Id,
                     Name = petType.Name
                 });
             }
@@ -46,13 +46,12 @@ namespace PetShop.RestAPI.Controllers
             {
                 PetType createdPetType = _petTypeService.Create(new PetType
                 {
-                    ID = -1,
                     Name = petType.Name
                 });
 
                 return Ok(new PetTypeDto
                 {
-                    ID = createdPetType.ID,
+                    ID = createdPetType.Id,
                     Name = createdPetType.Name
                 });
             }

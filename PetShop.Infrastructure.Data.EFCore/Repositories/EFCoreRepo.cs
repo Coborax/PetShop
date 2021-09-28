@@ -9,9 +9,9 @@ namespace PetShop.Infrastructure.Data.EFCore.Repositories
 {
     public class EFCoreRepo<T> : IRepo<T> where T : class
     {
-        protected DbContext _ctx;
+        protected readonly PetShopContext _ctx;
 
-        public EFCoreRepo(DbContext ctx)
+        public EFCoreRepo(PetShopContext ctx)
         {
             _ctx = ctx;
         }

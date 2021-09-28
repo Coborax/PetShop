@@ -27,7 +27,9 @@ namespace PetShop.Domain.Services
         {
             petType = _unitOfWork.PetTypes.Create(petType);
             _unitOfWork.Complete();
-            
+
+            var test = _unitOfWork.PetTypes.GetAll();
+
             return petType;
         }
     }

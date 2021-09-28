@@ -13,10 +13,12 @@ namespace PetShop.RestAPI.Controllers
     public class PetController : Controller
     {
         private IPetService _petService;
+        private IPetTypeService _petTypeService;
         
-        public PetController(IPetService petService)
+        public PetController(IPetService petService, IPetTypeService petTypeService)
         {
             _petService = petService;
+            _petTypeService = petTypeService;
         }
         
         // GET All
@@ -47,16 +49,16 @@ namespace PetShop.RestAPI.Controllers
             Pet fromDto = new Pet
             {
                 Name = pet.Name,
-                PetType = new PetType {ID = pet.TypeID},
+                PetTypeId = pet.TypeID,
                 Birthdate = pet.Birthdate,
                 SoldDate = pet.SoldDate,
                 Color = pet.Color,
                 Price = pet.Price
             };
             
-            Pet updatedPet = _petService.Create(fromDto);
-            if (updatedPet != null)
-                return Ok(PetToDto(updatedPet));
+            Pet createdPet = _petService.Create(fromDto);
+            if (createdPet != null)
+                return Ok(PetToDto(createdPet));
 
             return BadRequest();
         }
@@ -86,9 +88,9 @@ namespace PetShop.RestAPI.Controllers
         {
             return new()
             {
-                ID = pet.ID,
+                ID = pet.Id,
                 Name = pet.Name,
-                TypeID = pet.PetType.ID,
+                TypeID = pet.PetTypeId,
                 Birthdate = pet.Birthdate,
                 SoldDate = pet.SoldDate,
                 Color = pet.Color,

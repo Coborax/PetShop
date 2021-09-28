@@ -1,5 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using PetShop.Core.Services;
+using PetShop.Domain;
 using PetShop.Domain.Repositories;
 
 namespace PetShop.Infrastructure.Data.EFCore
@@ -11,7 +10,7 @@ namespace PetShop.Infrastructure.Data.EFCore
         public IOwnerRepo Owners { get; }
         public IUserRepo Users { get; }
 
-        private readonly DbContext _ctx;
+        private readonly PetShopContext _ctx;
         
         public EFCoreUnitOfWork(PetShopContext ctx, IPetRepo pets, IPetTypeRepo petTypes, IOwnerRepo owners, IUserRepo users)
         {

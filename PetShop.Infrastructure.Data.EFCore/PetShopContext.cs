@@ -24,16 +24,16 @@ namespace PetShop.Infrastructure.Data.EFCore
             List<Pet> pets = new List<Pet>();
             List<PetType> petTypes = new List<PetType>
             {
-                new() { ID = 1, Name = "Bunny" },
-                new() { ID = 2, Name = "Dog" },
-                new() { ID = 3, Name = "Cat"},
-                new() { ID = 4, Name = "Goat"}
+                new() { Id = 1, Name = "Bunny" },
+                new() { Id = 2, Name = "Dog" },
+                new() { Id = 3, Name = "Cat"},
+                new() { Id = 4, Name = "Goat"}
             };
 
             Faker<Pet> petFaker = new Faker<Pet>()
-                .RuleFor(p => p.ID, (f, _) => f.IndexFaker + 1)
+                .RuleFor(p => p.Id, (f, _) => f.IndexFaker + 1)
                 .RuleFor(p => p.Name, (f, _) => f.Name.FirstName())
-                 //.RuleFor(p => p.PetType, (f, _) => f.PickRandom(petTypes))
+                .RuleFor(p => p.PetTypeId, (f, _) => f.PickRandom(petTypes).Id)
                 .RuleFor(p => p.Birthdate, (f, _) => f.Date.Past())
                 .RuleFor(p => p.SoldDate, (f, _) => f.Date.Past())
                 .RuleFor(p => p.Color, (f, _) => f.Internet.Color())
@@ -41,9 +41,9 @@ namespace PetShop.Infrastructure.Data.EFCore
 
             
             pets.AddRange(petFaker.GenerateBetween(50, 100));
-            
-            //modelBuilder.Entity<PetType>().HasData(petTypes);
-            //modelBuilder.Entity<Pet>().HasData(pets);
+
+            modelBuilder.Entity<PetType>().HasData(petTypes);
+            modelBuilder.Entity<Pet>().HasData(pets);
         }
     }
 }
