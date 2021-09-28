@@ -1,26 +1,25 @@
 ﻿using PetShop.Core.Models;
 using PetShop.Core.Services;
-using PetShop.Domain.Repositories;
 
 namespace PetShop.Domain.Services
 {
     public class UserService : IUserService
     {
-        private IUserRepo _repo;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UserService(IUserRepo repo)
+        public UserService(IUnitOfWork unitOfWork)
         {
-            _repo = repo;
+            _unitOfWork = unitOfWork;
         }
 
         public User Find(string username)
         {
-            return _repo.Find(username);
+            return _unitOfWork.Users.Find(username);
         }
 
         public User Add(User user)
         {
-            return _repo.Add(user);
+            return _unitOfWork.Users.Create(user);
         }
     }
 }

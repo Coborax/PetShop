@@ -10,55 +10,59 @@ namespace PetShop.Domain.Services
 {
     public class PetService : IPetService
     {
-        private IPetRepo _petRepo;
         private IPetTypeRepo _petTypeRepo;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public PetService(IPetRepo petRepo, IPetTypeRepo petTypeRepo)
+        public PetService(IUnitOfWork unitOfWork, IPetTypeRepo petTypeRepo)
         {
-            _petRepo = petRepo;
+            _unitOfWork = unitOfWork;
             _petTypeRepo = petTypeRepo;
         }
 
         public Pet Create(Pet pet)
         {
-            PetType petType = _petTypeRepo.Find(pet.Type.ID);
+            PetType petType = _petTypeRepo.Find(pet.PetType.ID);
             if (petType == null)
-                throw new Exception($"Pet typ with ID: {pet.Type.ID}, does not exist");
+                throw new Exception($"Pet typ with ID: {pet.PetType.ID}, does not exist");
 
             // Update pet type to use reference from repo
-            pet.Type = petType;
-            return _petRepo.Create(pet);
+            pet.PetType = petType;
+
+            pet = _unitOfWork.Pets.Create(pet);
+            _unitOfWork.Complete();
+            
+            return pet;
         }
 
         public List<Pet> GetAll(Filter filter)
         {
-            return _petRepo.GetAll(filter);
+            return _unitOfWork.Pets.Search(filter);
         }
 
         public Pet Find(int id)
         {
-            return _petRepo.Find(id);
+            return _unitOfWork.Pets.Find(id);
         }
 
         public List<Pet> Find(PetType petType)
         {
-            return _petRepo.GetAll().Where(p => p.Type.ID == petType.ID).ToList();
+            return _unitOfWork.Pets.GetAll().Where(p => p.PetType.ID == petType.ID).ToList();
         }
 
         public Pet Update(Pet pet)
         {
-            return _petRepo.Update(pet);
+            return _unitOfWork.Pets.Update(pet);
         }
 
         public bool Delete(int id)
         {
-            Pet pet = _petRepo.Find(id);
-            return pet != null && _petRepo.Delete(pet);
+            Pet pet = _unitOfWork.Pets.Find(id);
+            return pet != null && _unitOfWork.Pets.Delete(pet);
         }
 
-        public List<Pet> GetCheapests(int n)
+        public List<Pet> GetCheapest(int n)
         {
-            return _petRepo.GetAll().OrderBy(p => p.Price).Take(n).ToList();
+            return _unitOfWork.Pets.GetCheapest(n);
         }
     }
 }

@@ -2,9 +2,8 @@
 
 namespace PetShop.Domain.Repositories
 {
-    public interface IUserRepo
+    public interface IUserRepo : IRepo<User>
     {
         User Find(string username);
-        User Add(User user);
     }
 }

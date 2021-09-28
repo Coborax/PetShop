@@ -36,7 +36,7 @@ namespace PetShop.RestAPI.Controllers
         [HttpGet("Cheapest/{n}")]
         public ActionResult<List<PetDto>> GetFiveCheapest(int n)
         {
-            return _petService.GetCheapests(n).Select(PetToDto).ToList();
+            return _petService.GetCheapest(n).Select(PetToDto).ToList();
         }
         
         // POST (Create)
@@ -46,7 +46,7 @@ namespace PetShop.RestAPI.Controllers
             Pet fromDto = new Pet
             {
                 Name = pet.Name,
-                Type = new PetType {ID = pet.TypeID},
+                PetType = new PetType {ID = pet.TypeID},
                 Birthdate = pet.Birthdate,
                 SoldDate = pet.SoldDate,
                 Color = pet.Color,
@@ -87,7 +87,7 @@ namespace PetShop.RestAPI.Controllers
             {
                 ID = pet.ID,
                 Name = pet.Name,
-                TypeID = pet.Type.ID,
+                //TypeID = pet.PetType.ID,
                 Birthdate = pet.Birthdate,
                 SoldDate = pet.SoldDate,
                 Color = pet.Color,

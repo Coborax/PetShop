@@ -11,7 +11,7 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
             {
                 ID = pet.ID,
                 Name = pet.Name,
-                TypeID = pet.Type.ID,
+                TypeID = pet.PetType.ID,
                 Birthdate = pet.Birthdate,
                 SoldDate = pet.SoldDate,
                 Color = pet.Color,
@@ -26,7 +26,7 @@ namespace PetShop.Infrastructure.Data.EFCore.Entities
             {
                 ID = pet.ID,
                 Name = pet.Name,
-                Type = new PetType {ID = pet.TypeID},
+                PetType = new PetType {ID = pet.TypeID},
                 Birthdate = pet.Birthdate,
                 SoldDate = pet.SoldDate,
                 Color = pet.Color,

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
@@ -15,6 +16,7 @@ namespace PetShop.RestAPI.Controllers
             _ownerService = ownerService;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<Owner> GetByID(int id)
         {

@@ -12,6 +12,6 @@ namespace PetShop.Core.Services
         List<Pet> Find(PetType petType);
         Pet Update(Pet pet);
         bool Delete(int id);
-        List<Pet> GetCheapests(int n);
+        List<Pet> GetCheapest(int n);
     }
 }

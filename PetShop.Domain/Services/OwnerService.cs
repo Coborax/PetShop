@@ -6,16 +6,16 @@ namespace PetShop.Domain.Services
 {
     public class OwnerService : IOwnerService
     {
-        private readonly IOwnerRepo _repo;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public OwnerService(IOwnerRepo repo)
+        public OwnerService(IUnitOfWork unitOfWork)
         {
-            _repo = repo;
+            _unitOfWork = unitOfWork;
         }
 
         public Owner Find(int id)
         {
-            return _repo.Find(id);
+            return _unitOfWork.Owners.Find(id);
         }
     }
 }

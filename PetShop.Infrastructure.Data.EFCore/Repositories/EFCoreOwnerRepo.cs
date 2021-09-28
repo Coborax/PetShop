@@ -5,22 +5,8 @@ using PetShop.Infrastructure.Data.EFCore.Entities;
 
 namespace PetShop.Infrastructure.Data.EFCore.Repositories
 {
-    public class EFCoreOwnerRepo : IOwnerRepo
+    public class EFCoreOwnerRepo : EFCoreRepo<Owner>, IOwnerRepo
     {
-        private PetShopContext _ctx;
-
-        public EFCoreOwnerRepo(PetShopContext ctx)
-        {
-            _ctx = ctx;
-        }
-        
-        public Owner Find(int id)
-        {
-            OwnerEntity ownerEntity = _ctx.Owners.FirstOrDefault(entity => entity.ID == id);
-            if (ownerEntity == null)
-                return null;
-
-            return EntityConverter.EntityToOwner(ownerEntity);
-        }
+        public EFCoreOwnerRepo(PetShopContext ctx) : base(ctx) { }
     }
 }

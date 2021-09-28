@@ -1,32 +1,31 @@
 ﻿using System.Collections.Generic;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
-using PetShop.Domain.Repositories;
 
 namespace PetShop.Domain.Services
 {
     public class PetTypeService : IPetTypeService
     {
-        private IPetTypeRepo _repo;
+        private IUnitOfWork _unitOfWork;
 
-        public PetTypeService(IPetTypeRepo repo)
+        public PetTypeService(IUnitOfWork unitOfWork)
         {
-            _repo = repo;
+            _unitOfWork = unitOfWork;
         }
 
         public PetType Find(int id)
         {
-            return _repo.Find(id);
+            return _unitOfWork.PetTypes.Find(id);
         }
 
         public List<PetType> GetAll()
         {
-            return _repo.GetAll();
+            return _unitOfWork.PetTypes.GetAll();
         }
 
         public PetType Create(PetType petType)
         {
-            return _repo.Create(petType);
+            return _unitOfWork.PetTypes.Create(petType);
         }
     }
 }
