@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using PetShop.Core.Filtering;
 using PetShop.Core.Models;
 using PetShop.Domain.Repositories;
 using PetShop.Infrastructure.Data.EFCore.Entities;
@@ -24,8 +25,17 @@ namespace PetShop.Infrastructure.Data.EFCore.Repositories
             return EntityConverter.EntityToPet(createdPet);
         }
 
-        public List<Pet> GetAll()
+        public List<Pet> GetAll(Filter filter)
         {
+            if (filter != null)
+            {
+                return _ctx.Pets
+                    .Select(pe => EntityConverter.EntityToPet(pe))
+                    .Skip(filter.Count * (filter.Page - 1))
+                    .Take(filter.Count)
+                    .ToList();
+            }
+            
             return _ctx.Pets
                 .Select(pe => EntityConverter.EntityToPet(pe))
                 .ToList();

@@ -17,7 +17,7 @@ namespace PetShop.RestAPI.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public ActionResult<UserDto> Login([FromBody]LoginDto loginData)
         {
             User user = _userService.Find(loginData.Username);
@@ -38,7 +38,7 @@ namespace PetShop.RestAPI.Controllers
             };
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public ActionResult<UserDto> Register([FromBody] LoginDto signupData)
         {
 

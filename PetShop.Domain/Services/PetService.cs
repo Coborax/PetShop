@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PetShop.Core.Filtering;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
 using PetShop.Domain.Repositories;
@@ -29,9 +30,9 @@ namespace PetShop.Domain.Services
             return _petRepo.Create(pet);
         }
 
-        public List<Pet> GetAll()
+        public List<Pet> GetAll(Filter filter)
         {
-            return _petRepo.GetAll();
+            return _petRepo.GetAll(filter);
         }
 
         public Pet Find(int id)

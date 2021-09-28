@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using PetShop.Core.Filtering;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
 
@@ -19,9 +20,9 @@ namespace PetShop.RestAPI.Controllers
         
         // GET All
         [HttpGet]
-        public ActionResult<List<PetDto>> Get()
+        public ActionResult<List<PetDto>> Get([FromQuery]Filter filter)
         {
-            return Ok(_petService.GetAll().Select(PetToDto));
+            return Ok(_petService.GetAll(filter).Select(PetToDto));
         }
         
         // GET by ID
