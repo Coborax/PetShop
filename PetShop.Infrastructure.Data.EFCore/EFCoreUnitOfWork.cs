@@ -24,7 +24,7 @@ namespace PetShop.Infrastructure.Data.EFCore
 
         public void Complete()
         {
-            _ctx.SaveChanges();
+            _ctx.SaveChanges(true);
         }
     }
 }

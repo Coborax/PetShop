@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PetShop.Core.Filtering;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
+using PetShop.RestAPI.DTOs;
 
 namespace PetShop.RestAPI.Controllers
 {
@@ -41,7 +42,7 @@ namespace PetShop.RestAPI.Controllers
         
         // POST (Create)
         [HttpPost]
-        public ActionResult<PetDto> Post(PetDto pet)
+        public ActionResult<PetDto> Post(PostPetDto pet)
         {
             Pet fromDto = new Pet
             {
@@ -87,7 +88,7 @@ namespace PetShop.RestAPI.Controllers
             {
                 ID = pet.ID,
                 Name = pet.Name,
-                //TypeID = pet.PetType.ID,
+                TypeID = pet.PetType.ID,
                 Birthdate = pet.Birthdate,
                 SoldDate = pet.SoldDate,
                 Color = pet.Color,

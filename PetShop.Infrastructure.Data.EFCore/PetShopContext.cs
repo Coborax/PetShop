@@ -42,8 +42,8 @@ namespace PetShop.Infrastructure.Data.EFCore
             
             pets.AddRange(petFaker.GenerateBetween(50, 100));
             
-            modelBuilder.Entity<PetType>().HasData(petTypes);
-            modelBuilder.Entity<Pet>().HasData(pets);
+            //modelBuilder.Entity<PetType>().HasData(petTypes);
+            //modelBuilder.Entity<Pet>().HasData(pets);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
+using PetShop.RestAPI.DTOs;
 
 namespace PetShop.RestAPI.Controllers
 {

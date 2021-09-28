@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
+using PetShop.RestAPI.DTOs;
 
 namespace PetShop.RestAPI.Controllers
 {
@@ -45,6 +46,7 @@ namespace PetShop.RestAPI.Controllers
             {
                 PetType createdPetType = _petTypeService.Create(new PetType
                 {
+                    ID = -1,
                     Name = petType.Name
                 });
 

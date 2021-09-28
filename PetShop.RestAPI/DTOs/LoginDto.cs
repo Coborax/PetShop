@@ -1,4 +1,4 @@
-﻿namespace PetShop.RestAPI
+﻿namespace PetShop.RestAPI.DTOs
 {
     public class LoginDto
     {

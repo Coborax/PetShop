@@ -10,24 +10,15 @@ namespace PetShop.Domain.Services
 {
     public class PetService : IPetService
     {
-        private IPetTypeRepo _petTypeRepo;
         private readonly IUnitOfWork _unitOfWork;
 
-        public PetService(IUnitOfWork unitOfWork, IPetTypeRepo petTypeRepo)
+        public PetService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _petTypeRepo = petTypeRepo;
         }
 
         public Pet Create(Pet pet)
-        {
-            PetType petType = _petTypeRepo.Find(pet.PetType.ID);
-            if (petType == null)
-                throw new Exception($"Pet typ with ID: {pet.PetType.ID}, does not exist");
-
-            // Update pet type to use reference from repo
-            pet.PetType = petType;
-
+        { 
             pet = _unitOfWork.Pets.Create(pet);
             _unitOfWork.Complete();
             

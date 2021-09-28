@@ -25,7 +25,10 @@ namespace PetShop.Domain.Services
 
         public PetType Create(PetType petType)
         {
-            return _unitOfWork.PetTypes.Create(petType);
+            petType = _unitOfWork.PetTypes.Create(petType);
+            _unitOfWork.Complete();
+            
+            return petType;
         }
     }
 }
