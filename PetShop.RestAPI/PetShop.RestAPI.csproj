@@ -15,7 +15,6 @@
       <ProjectReference Include="..\PetShop.Domain\PetShop.Domain.csproj" />
       <ProjectReference Include="..\PetShop.Infrastructure.Auth.JWT\PetShop.Infrastructure.Auth.JWT.csproj" />
       <ProjectReference Include="..\PetShop.Infrastructure.Data.EFCore\PetShop.Infrastructure.Data.EFCore.csproj" />
-      <ProjectReference Include="..\PetShop.Infrastructure.Data.InMemory\PetShop.Infrastructure.Data.InMemory.csproj" />
     </ItemGroup>
 
 </Project>

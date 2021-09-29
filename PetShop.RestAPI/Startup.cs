@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Bogus;
-using Bogus.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,10 +15,7 @@ using PetShop.Domain.Repositories;
 using PetShop.Domain.Services;
 using PetShop.Infrastructure.Auth.JWT;
 using PetShop.Infrastructure.Data.EFCore;
-using PetShop.Infrastructure.Data.EFCore.Entities;
 using PetShop.Infrastructure.Data.EFCore.Repositories;
-using PetShop.Infrastructure.Data.InMemory;
-using PetShop.Infrastructure.Data.InMemory.Repositories;
 
 namespace PetShop.RestAPI
 {
