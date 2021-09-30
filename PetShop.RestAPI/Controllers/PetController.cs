@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetShop.Core.Filtering;
 using PetShop.Core.Models;
@@ -29,6 +30,7 @@ namespace PetShop.RestAPI.Controllers
         }
         
         // GET by ID
+        [Authorize(Roles = "admin")]
         [HttpGet("{id}")]
         public ActionResult<PetDto> Get(int id)
         {

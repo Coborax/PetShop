@@ -19,7 +19,14 @@ namespace PetShop.Domain.Services
 
         public User Add(User user)
         {
-            return _unitOfWork.Users.Create(user);
+            user = _unitOfWork.Users.Create(user);
+            _unitOfWork.Complete();
+            return user;
+        }
+
+        public Role FindRole(string roleName)
+        {
+            return _unitOfWork.Roles.Find(roleName);
         }
     }
 }

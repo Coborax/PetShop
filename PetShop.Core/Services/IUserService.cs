@@ -6,5 +6,6 @@ namespace PetShop.Core.Services
     {
         User Find(string username);
         User Add(User user);
+        Role FindRole(string roleName);
     }
 }

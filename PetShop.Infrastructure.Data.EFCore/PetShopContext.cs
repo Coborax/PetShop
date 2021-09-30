@@ -14,6 +14,7 @@ namespace PetShop.Infrastructure.Data.EFCore
         public DbSet<PetType> PetTypes { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         public PetShopContext(DbContextOptions<PetShopContext> options) : base(options) { }
 
@@ -44,6 +45,12 @@ namespace PetShop.Infrastructure.Data.EFCore
 
             modelBuilder.Entity<PetType>().HasData(petTypes);
             modelBuilder.Entity<Pet>().HasData(pets);
+            modelBuilder.Entity<Role>().HasData(
+                new List<Role>
+                {
+                    new() { Id = 1, RoleName = "user" },
+                    new() { Id = 2, RoleName = "admin" }
+                });
         }
     }
 }

@@ -16,7 +16,6 @@ namespace PetShop.RestAPI.Controllers
             _ownerService = ownerService;
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<Owner> GetByID(int id)
         {

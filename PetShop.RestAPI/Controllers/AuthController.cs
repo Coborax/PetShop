@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
 using PetShop.RestAPI.DTOs;
@@ -51,7 +52,8 @@ namespace PetShop.RestAPI.Controllers
             {
                 Username = signupData.Username,
                 PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt
+                PasswordSalt = passwordSalt,
+                Roles = new List<Role> { _userService.FindRole("user") }
             };
 
             user = _userService.Add(user);

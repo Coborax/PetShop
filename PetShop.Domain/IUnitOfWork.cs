@@ -1,3 +1,4 @@
+using PetShop.Core.Models;
 using PetShop.Domain.Repositories;
 
 namespace PetShop.Domain
@@ -8,6 +9,7 @@ namespace PetShop.Domain
         IPetTypeRepo PetTypes { get; }
         IOwnerRepo Owners { get; }
         IUserRepo Users { get; }
+        IRoleRepo Roles { get; }
         void Complete();
     }
 }

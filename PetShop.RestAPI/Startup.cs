@@ -86,6 +86,7 @@ namespace PetShop.RestAPI
             services.AddScoped<IPetTypeRepo, EFCorePetTypeRepo>();
             services.AddScoped<IOwnerRepo, EFCoreOwnerRepo>();
             services.AddScoped<IUserRepo, EFCoreUserRepo>();
+            services.AddScoped<IRoleRepo, EFCoreRoleRepo>();
             
             services.AddScoped<IUnitOfWork, EFCoreUnitOfWork>();
             
@@ -95,7 +96,6 @@ namespace PetShop.RestAPI
             services.AddScoped<IUserService, UserService>();
 
             services.AddSingleton<IAuthenticationHelper>(new JWTAuthenticationHelper(secretBytes));
-            //services.AddScoped<IUnitOfWork, InMemoryUnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

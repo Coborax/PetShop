@@ -49,6 +49,11 @@ namespace PetShop.Infrastructure.Auth.JWT
                 new(ClaimTypes.Name, user.Username)
             };
 
+            foreach (Role role in user.Roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role.RoleName));
+            }
+
             var token = new JwtSecurityToken(
                 new JwtHeader(new SigningCredentials(
                     new SymmetricSecurityKey(_secret),

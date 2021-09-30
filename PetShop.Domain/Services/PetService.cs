@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using PetShop.Core.Filtering;
 using PetShop.Core.Models;
 using PetShop.Core.Services;
-using PetShop.Domain.Repositories;
 
 namespace PetShop.Domain.Services
 {
