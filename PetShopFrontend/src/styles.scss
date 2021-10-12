@@ -1,1 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+$color1: #05445e;
+$color2: #189ab4;
+$color3: #75e6da;
+$color4: #d4f1f4;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.header {
+  background-color: $color1;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  height: 5rem;
+
+  h1 {
+    color: $color4;
+    font-weight: bold;
+  }
+}
+
+.fancy-list {
+  margin: 2rem;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+
+  li {
+    margin: 0;
+    padding: 1rem;
+    background-color: $color4;
+
+    &:nth-of-type(odd) {
+      background-color: $color3;
+    }
+
+    &:hover {
+      background-color: $color2;
+      animation: ease-in-out;
+      transition: 1s;
+      cursor: pointer;
+    }
+  }
+}
+
+.page-controls {
+  margin: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p, button {
+    margin: 1rem;
+  }
+}

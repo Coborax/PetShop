@@ -10,16 +10,31 @@ import {PetDto} from "../../shared/pet.dto";
 export class PetOverviewComponent implements OnInit {
 
   pets: PetDto[] = [];
+  page: number = 1;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<PetDto[]>("https://localhost:5001/api/pets").subscribe((res) => {
+    this.loadPets()
+  }
+
+  next(): void {
+    this.page += 1;
+    this.loadPets();
+  }
+
+  previous(): void {
+    this.page -= 1;
+    this.loadPets();
+  }
+
+  loadPets(): void {
+    this.pets = [];
+    this.http.get<PetDto[]>("https://localhost:5001/api/Pet?Count=10&Page=" + this.page).subscribe((res) => {
       this.pets = res;
       console.log("Fetched Pets: " + JSON.stringify(this.pets));
     }, (err) => {
       console.log("Error fetching pets, Error: " + err.message);
-      this.pets = [ { id: 1, name: "Bob" }, { id: 2, name: "Svend" }, { id: 3, name: "Jørgen" }]
     });
   }
 

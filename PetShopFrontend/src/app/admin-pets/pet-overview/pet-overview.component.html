@@ -1,5 +1,11 @@
-<h1>Pet Overview</h1>
-<ul>
-  <li *ngFor="let pet of pets">{{pet.name}} (ID: {{pet.id}})</li>
+<div class="header">
+  <h1>Pet Overview</h1>
+</div>
+<ul class="fancy-list">
+  <li *ngFor="let pet of pets" [ngStyle]="{'color': pet.color}">{{pet.name}} (ID: {{pet.id}})</li>
 </ul>
-
+<div class="page-controls">
+  <button (click)="previous()">Previous</button>
+  <p>Page: {{page}}</p>
+  <button (click)="next()">Next</button>
+</div>
