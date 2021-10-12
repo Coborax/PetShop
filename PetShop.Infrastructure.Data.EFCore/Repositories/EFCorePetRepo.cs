@@ -16,20 +16,19 @@ namespace PetShop.Infrastructure.Data.EFCore.Repositories
 
         public new List<Pet> Search(Filter filter)
         {
-            List<Pet> result = base.Search(filter);
+            IEnumerable<Pet> result = base.Search(filter);
 
+            if (!string.IsNullOrEmpty(filter.SearchTerm))
+                result = result.Where(p => p.Name.ToLower().Contains(filter.SearchTerm.ToLower()));
+            
             if (string.IsNullOrEmpty(filter.SortType) || filter.SortType.Equals("asc"))
                 result = result
-                    .OrderBy(p => p.Name)
-                    .Where(p => p.Name.ToLower().Contains(filter.SearchTerm.ToLower()))
-                    .ToList();
+                    .OrderBy(p => p.Name);
             else if (filter.SortType.Equals("desc"))
                 result = result
-                    .OrderByDescending(p => p.Name)
-                    .Where(p => p.Name.ToLower().Contains(filter.SearchTerm.ToLower()))
-                    .ToList();
+                    .OrderByDescending(p => p.Name);
 
-            return result;
+            return result.ToList();
         }
     }
 }
