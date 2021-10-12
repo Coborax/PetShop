@@ -19,6 +19,7 @@ export class PetOverviewComponent implements OnInit {
       console.log("Fetched Pets: " + JSON.stringify(this.pets));
     }, (err) => {
       console.log("Error fetching pets, Error: " + err.message);
+      this.pets = [ { id: 1, name: "Bob" }, { id: 2, name: "Svend" }, { id: 3, name: "Jørgen" }]
     });
   }
 
