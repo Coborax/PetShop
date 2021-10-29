@@ -60,3 +60,46 @@ body {
     margin: 1rem;
   }
 }
+
+form {
+  margin: 1rem;
+  width: 30vw;
+  display: block;
+
+  input {
+    width: 100%;
+    display: block;
+    border: none;
+    background-color: $color4;
+    border-radius: 0.3rem;
+    padding: .5rem;
+    margin: .2rem 0 .5rem 0;
+  }
+
+  button {
+    display: block;
+    border: none;
+    background-color: $color4;
+    border-radius: 0.3rem;
+    padding: 1rem 2rem;
+
+    &:hover {
+      background-color: $color3;
+    }
+
+    &:disabled {
+      background-color: lighten($color4, 3);
+    }
+  }
+}
+
+.alert {
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: .3rem;
+  color: white;
+}
+
+.alert-danger {
+  background-color: lighten(red, 15);
+}
